@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang = "ru" dir = "ltr">
+  <head>
+    <meta charset = "utf-8">
+    <title>Без имени - Визуализация</title>
+    <meta name = "viewport" content = "width = device-width, initial-scale = 1">
+    <link rel="shortcut icon" href="resources/cursor.svg">
+
+    <meta property = "og:title"       content = "" />
+    <meta property = "og:description" content = "" />
+    <meta property = "og:image"       content = "" />
+
+    <link rel = "stylesheet" href = "resources/style.css">
+  </head>
+  <body>
+    <main>
+      <canvas tabindex = "1" width = "470" height = "470"></canvas>
+    </main>
+    <section>
+      <span class = "select-button" data-content = "Загрузка">
+        <select selected id = "saverManager"  name = "saverManager">
+          <option value = "clipboardRestore">Загрузить из буфера обмена</option>
+          <option value = "fileRestore">Загрузить из файла</option>
+          <option value = "hideController">Закрыть это меню</option>
+        </select>
+      </span>
+    </section>
+  </body>
+
+  <script src = "modules/util.js" charset = "utf-8"></script>
+  <script src = "modules/EventEmitter.js" charset = "utf-8"></script>
+  <script src = "modules/Vector.js" charset = "utf-8"></script>
+  <script src = "modules/Light.js" charset = "utf-8"></script>
+  <script src = "modules/canvasController.js" charset = "utf-8"></script>
+  <script src = "modules/canvas.js" charset = "utf-8"></script>
+  <script src = "modules/vectors.json.js" charset = "utf-8"></script>
+  <script src = "visualizer.js" charset = "utf-8"></script>
+</html>
