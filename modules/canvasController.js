@@ -113,6 +113,7 @@ class SaverManager extends SimpleManager {
     openTab: {
       callback: async function(){
         const tabWindow = window.open("visualizer.html", location.hostname);
+        await delay(5000);
         tabWindow.postMessage(this.creator.toJSON());
       }
     },
