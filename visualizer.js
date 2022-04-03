@@ -84,6 +84,6 @@ globalThis.visualizer = new Visualizer(canvas);
 
 
 
-window.addEventListener("message", ({data}) => {
-  console.log(data);
+window.addEventListener("message", (messageEvent) => {
+  console.log(messageEvent);
 });
