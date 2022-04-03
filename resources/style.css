@@ -1,0 +1,106 @@
+:root
+{
+  --cursor-color: black;
+  --canvasBackground: #7cccb2;
+}
+
+*
+{
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+
+  font-family: monospace;
+}
+
+body
+{
+  cursor: url("cursor.svg") 8 8, auto;
+  position: relative;
+
+  background: #211f47;
+  min-height: 100vh;
+  max-height: 100vh;
+  overflow: hidden;
+
+
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+
+  gap: 5vh;
+}
+
+main
+{
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: sticky;
+  top: 0;
+
+  flex-grow: 1;
+  flex-shrink: 0;
+}
+
+canvas
+{
+  background: var( --canvasBackground );
+  border: 3px dashed #4b0082;
+  outline: none;
+  max-width: 92.5vw;
+  max-height: 92.5vh;
+  height: auto;
+
+  image-rendering: auto;
+}
+
+section
+{
+  position: sticky;
+  bottom: 0;
+}
+
+select
+{
+  background: none;
+  height: 50px;
+  min-height: 10px;
+  min-width: 20vw;
+  display: inline-block;
+}
+
+
+.select-button
+{
+  position: relative;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  pointer-events: none;
+}
+
+.select-button select
+{
+  color: transparent;
+  pointer-events: all;
+  cursor: inherit;
+}
+
+.select-button select option
+{
+  color: white;
+  background: #211f47;
+  outline: none;
+  border: none;
+}
+
+.select-button::before
+{
+  content: attr(data-content);
+  color: white;
+  display: inline-block;
+
+  position: absolute;
+}

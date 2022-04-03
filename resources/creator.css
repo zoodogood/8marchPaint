@@ -1,0 +1,31 @@
+.creator--cursor
+{
+  position: fixed;
+  display: inline-block;
+  z-index: 2;
+  pointer-events: none;
+
+  font-family: cursive;
+  user-select: none;
+}
+
+
+canvas
+{
+  cursor: none;
+}
+
+body > section
+{
+  display: flex;
+  justify-content: space-around;
+  gap: 10%;
+}
+
+body > section .select-button
+{
+  padding: 10px;
+  width: fit-content;
+  min-width: 50%;
+  
+}
