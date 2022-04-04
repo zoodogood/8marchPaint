@@ -1,12 +1,12 @@
 {
   "type": "8marchCreator",
   "canvas": {
-    "width": 1000,
-    "height": 1000,
+    "width": 800,
+    "height": 800,
     "background": [
-      0,
-      0,
-      0
+      50,
+      50,
+      50
     ],
     "title": "С 8"
   },
