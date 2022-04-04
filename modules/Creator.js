@@ -120,12 +120,12 @@ class Creator {
 
     if (data.canvas.title){
       this.canvas.title = data.canvas.title;
-      document.title = `${ this.canvas.title } - Визуализация`;
+      document.title = `${ this.canvas.title } - Создание`;
     }
 
     this.canvas.node.width  = Math.max(data.canvas.width  ?? 0, this.canvas.node.width);
     this.canvas.node.height = Math.max(data.canvas.height ?? 0, this.canvas.node.height);
-    this.canvas.node.style.backgroundColor = `rgb(${ data.canvas.background.join(", ") })`;
+    document.documentElement.style.setProperty("--canvasBackground", `rgb(${ color.join(", ") })`);
   }
 
   static KEY_BUILDING = {
@@ -201,7 +201,6 @@ class Creator {
     "KEY_57": function(){
       this.cursor.setColor("40", "200", "48");
     }
-
   }
 }
 

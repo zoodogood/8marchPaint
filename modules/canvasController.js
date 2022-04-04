@@ -112,9 +112,8 @@ class SaverManager extends SimpleManager {
 
     openTab: {
       callback: async function(){
-        const tabWindow = window.open("visualizer.html", location.hostname);
-        await delay(5000);
-        tabWindow.postMessage(this.creator.toJSON());
+        window.open("visualizer.html?session=true");
+        sessionStorage.setItem("8march--data", this.creator.toJSON());
       }
     },
 
@@ -153,7 +152,7 @@ class ParamsManager extends SimpleManager {
         if (color === null)
           return;
 
-        node.style.background = `rgb(${ color.join(", ") })`;
+        document.documentElement.style.setProperty("--canvasBackground", `rgb(${ color.join(", ") })`);
       }
     },
 
@@ -178,6 +177,7 @@ class ParamsManager extends SimpleManager {
         if (!out)
           return;
 
+        canvas.title = out;
         document.title = `${ out } - ${ {Creator: "Создание", Visualizer: "Визуализация"}[this.creator.constructor.name] }`;
       }
     },

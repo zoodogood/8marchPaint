@@ -28,7 +28,7 @@ class Canvas {
     this.node.addEventListener("mouseenter",  this.#mouseEnterHandler.bind(this));
     this.node.addEventListener("contextmenu", this.#openContextHandler.bind(this));
 
-    this.node.addEventListener("keydown", keyEvent => {
+    document.addEventListener("keydown", keyEvent => {
       let stringView = `KEY_${ keyEvent.keyCode }`;
 
       if (keyEvent.ctrlKey)
@@ -47,14 +47,16 @@ class Canvas {
       globalThis.__lastPressedKey = keyEvent.keyCode;
     });
 
-    this.node.addEventListener("wheel", wheekEvent => {
-      wheekEvent.preventDefault();
-      const stringView = `WHEEL_${ wheekEvent.deltaY < 0 ? "UP" : "DOWN" }`;
+    this.node.addEventListener("wheel", wheelEvent => {
+      wheelEvent.preventDefault();
+      const stringView = `WHEEL_${ wheelEvent.deltaY < 0 ? "UP" : "DOWN" }`;
       this.events.emit("keyDown", stringView);
     });
 
     const resizeObserver = new ResizeObserver(this.#resizeHandler.bind(this));
     resizeObserver.observe(this.node);
+
+    window.addEventListener("resize", this.#resizeHandler.bind(this));
   }
 
   #clickHandler(clickEvent){
@@ -110,14 +112,20 @@ class Canvas {
   }
 
   #resizeHandler(entries){
-    console.log(entries);
+    this.#_fixPixelRatio();
   }
 
 
   #_fixPixelRatio(){
     const DPI = window.devicePixelRatio;
-    const { width, height } = this.node.getBoundingClientRect();
+    const width = this.node.clientWidth;
+    const height = this.node.clientHeight;
+
     const [ scaleX, scaleY ] = [this.node.width / width, this.node.height / height];
+
+    const { a: currentX, d: currentY } = this.ctx.getTransform();
+    this.ctx.scale(1 / currentX, 1 / currentY);
+
     this.ctx.scale(scaleX, scaleY);
     this.ctx.scaleFactor = { x: scaleX, y: scaleY };
   }

@@ -11,7 +11,43 @@
   box-sizing: border-box;
 
   font-family: monospace;
+
+  scrollbar-color: #458245 #714826;
+  scrollbar-width: thin;
 }
+
+
+::-webkit-scrollbar {
+  width: 1vh;
+  height: 1vh;
+  background-color: transparent;
+}
+
+::-webkit-scrollbar-corner {
+  background: transparent;
+}
+
+/* ползунок скроллбара */
+::-webkit-scrollbar-thumb {
+  background-color: rgba(255, 255, 255, 0.3);
+  border-radius: 9em;
+  transition: background-color 100ms;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background-color: rgba(255, 255, 255, 0.5);
+}
+
+/* Стрелки */
+
+::-webkit-scrollbar-button:vertical:start:decrement,
+::-webkit-scrollbar-button:vertical:end:increment,
+::-webkit-scrollbar-button:horizontal:start:decrement,
+::-webkit-scrollbar-button:horizontal:end:increment
+{
+  display: none;
+}
+
 
 body
 {
@@ -34,23 +70,21 @@ body
 
 main
 {
-  display: flex;
-  align-items: center;
-  justify-content: center;
   position: sticky;
   top: 0;
 
-  flex-grow: 1;
-  flex-shrink: 0;
+  overflow: auto;
+  max-width: 92vw;
+  max-height: 92vh;
+
+  border: 3px dashed #4b0082;
+  background: var( --canvasBackground );
 }
 
 canvas
 {
   background: var( --canvasBackground );
-  border: 3px dashed #4b0082;
   outline: none;
-  max-width: 92.5vw;
-  max-height: 92.5vh;
   height: auto;
 
   image-rendering: auto;
@@ -58,17 +92,24 @@ canvas
 
 section
 {
-  position: sticky;
+  position: fixed;
   bottom: 0;
 }
 
 select
 {
   background: none;
-  height: 50px;
+  height: 5vh;
   min-height: 10px;
   min-width: 20vw;
   display: inline-block;
+}
+
+body > section .select-button
+{
+  width: fit-content;
+  min-width: 50%;
+
 }
 
 
@@ -79,6 +120,10 @@ select
   justify-content: center;
   align-items: center;
   pointer-events: none;
+
+
+  font-size: 1vw;
+  max-width: 40vw;
 }
 
 .select-button select
@@ -86,7 +131,15 @@ select
   color: transparent;
   pointer-events: all;
   cursor: inherit;
+
+  border-width: min(1px, 0.1vh);
 }
+
+.select-button select:focus
+{
+  outline: none;
+}
+
 
 .select-button select option
 {

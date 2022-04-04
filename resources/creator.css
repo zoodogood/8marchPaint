@@ -21,11 +21,3 @@ body > section
   justify-content: space-around;
   gap: 10%;
 }
-
-body > section .select-button
-{
-  padding: 10px;
-  width: fit-content;
-  min-width: 50%;
-  
-}
