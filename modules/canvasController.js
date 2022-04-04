@@ -112,8 +112,8 @@ class SaverManager extends SimpleManager {
 
     openTab: {
       callback: async function(){
-        window.open("visualizer.html?session=true");
         sessionStorage.setItem("8march--data", this.creator.toJSON());
+        window.open("visualizer.html?session=true");
       }
     },
 

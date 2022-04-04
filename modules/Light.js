@@ -5,6 +5,10 @@ class Light {
 
     receivers = receivers.filter(vector => !sourceVector.layerID || vector.layerID === sourceVector.layerID);
 
+    force *= this.constructor.FORCE_MULTIPLAYER
+    force *= 1.07 ** sourceVector.getPowerMultiplayer();
+    force *= 1 + sourceVector.size / 120;
+
     for (const receiver of receivers){
 
       if (receiver._taked.length >= this.constructor.RECEIVERS_LIMIT)
@@ -14,6 +18,10 @@ class Light {
         continue;
 
       const distance = ((sourceX - receiver.position.x) ** 2 + (sourceY - receiver.position.y) ** 2) ** 0.5;
+
+      globalThis.max = Math.max(receiver.size, globalThis.max ?? 0);
+      globalThis.min = Math.min(receiver.size, globalThis.min ?? Infinity);
+
       if (force - distance <= 0)
         continue;
 
@@ -23,14 +31,14 @@ class Light {
     }
   }
 
+  static FORCE_MULTIPLAYER = 0.95;
   static RECEIVERS_LIMIT = 5;
+  static FORCE_LIMIT = 0.05;
 }
 
 Vector.prototype.takeLigth = function(force){
-  if (this.state.opacity > 1)
+  if (this.state.opacity >= 1)
     return;
 
-  force *= this.size;
-  force *= 1.2 ** this.getPowerMultiplayer();
-  this.state.opacity += 0.001 * force;
+  this.state.opacity += 0.008 * force;
 }

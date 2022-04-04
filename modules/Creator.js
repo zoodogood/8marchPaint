@@ -112,11 +112,12 @@ class Creator {
       console.error(err);
       return;
     }
+
     const vectors = data.vectors
       .map(vector => new Vector(vector));
 
-    vectors.forEach(vector => vector.state.opacity = 0);
     this.vectors.push(...vectors);
+
 
     if (data.canvas.title){
       this.canvas.title = data.canvas.title;
@@ -125,7 +126,9 @@ class Creator {
 
     this.canvas.node.width  = Math.max(data.canvas.width  ?? 0, this.canvas.node.width);
     this.canvas.node.height = Math.max(data.canvas.height ?? 0, this.canvas.node.height);
-    document.documentElement.style.setProperty("--canvasBackground", `rgb(${ color.join(", ") })`);
+    this.canvas.ctx.textBaseline = "top";
+
+    document.documentElement.style.setProperty("--canvasBackground", `rgb(${ data.canvas.background.join(", ") })`);
   }
 
   static KEY_BUILDING = {

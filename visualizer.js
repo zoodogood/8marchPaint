@@ -25,7 +25,7 @@ class Visualizer {
       while (whenMouseUp.done !== true){
         await delay(50);
         this.vectors.forEach(vector => vector._taked = []);
-        const sourceVector = { position: {x, y}, power: 6 };
+        const sourceVector = { position: {x, y}, getPowerMultiplayer: () => 1, size: 3 };
         new Light({ force: 25, sourceVector, receivers: this.vectors });
       }
 
@@ -72,7 +72,9 @@ class Visualizer {
 
     this.canvas.node.width  = Math.max(data.canvas.width  ?? 0, this.canvas.node.width);
     this.canvas.node.height = Math.max(data.canvas.height ?? 0, this.canvas.node.height);
-    document.documentElement.style.setProperty("--canvasBackground", `rgb(${ color.join(", ") })`);
+    this.canvas.ctx.textBaseline = "top";
+
+    document.documentElement.style.setProperty("--canvasBackground", `rgb(${ data.canvas.background.join(", ") })`);
   }
 }
 

@@ -34,7 +34,6 @@ class Vector {
     ctx.translate(positionX, positionY);
     ctx.rotate( this.angle );
 
-
     const { width: baseWidth, actualBoundingBoxAscent, actualBoundingBoxDescent } = ctx.measureText("8");
     const baseHeight = actualBoundingBoxAscent + actualBoundingBoxDescent;
 
