@@ -145,7 +145,7 @@ class ParamsManager extends SimpleManager {
         const pageY = window.innerHeigth / 2;
 
         const palette = new Paletter(pageX, pageY, {currentColor});
-        palette.node.style.transform = "translate(-50%, -50%) scale(2)";
+        palette.node.style.transform = "translate(-50%, 50%) scale(2)";
 
         const color = await palette.whenColor;
 
