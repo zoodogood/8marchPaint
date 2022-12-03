@@ -55,7 +55,7 @@ class Visualizer {
 
     } catch (err) {
       alert("Во время загрузки произошла ошибка. Подробнее в консоли разработчика");
-      console.log(`\n\n-- ОШИБКА ЗАГРУЗКИ ${ new Intl.DateTimeFormat("ru-ru", {minute: "2-digit", hour: "2-digit"}).format() }`);
+      console.info(`\n\n-- ОШИБКА ЗАГРУЗКИ ${ new Intl.DateTimeFormat("ru-ru", {minute: "2-digit", hour: "2-digit"}).format() }`);
       console.error(err);
       return;
     }
@@ -70,8 +70,8 @@ class Visualizer {
       document.title = `${ this.canvas.title } - Визуализация`;
     }
 
-    this.canvas.node.width  = Math.max(data.canvas.width  ?? 0, this.canvas.node.width);
-    this.canvas.node.height = Math.max(data.canvas.height ?? 0, this.canvas.node.height);
+    this.canvas.node.width  = data.canvas.width  ?? this.canvas.node.width;
+    this.canvas.node.height = data.canvas.height ?? this.canvas.node.height;
     this.canvas.ctx.textBaseline = "top";
 
     document.documentElement.style.setProperty("--canvasBackground", `rgb(${ data.canvas.background.join(", ") })`);
